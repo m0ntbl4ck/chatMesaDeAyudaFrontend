@@ -1,20 +1,20 @@
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
-import { useAuth } from '../context/AuthContext';
-
+import { useForm } from 'react-hook-form'; // Importa el hook useForm para el manejo de formularios
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate para la navegación
+import { useEffect, useState } from "react"; // Importa useEffect y useState para efectos y estados
+import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
 
 function LoginPage() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
- 
-  const {signin,isAutheticated,errors: signinErrors }=useAuth()
-  const navigate = useNavigate();
-  const [showErrors, setShowErrors] = useState(true);
+  const { register, handleSubmit, formState: { errors } } = useForm(); // Usa el hook useForm para registrar campos del formulario
+  const { signin, isAutheticated, errors: signinErrors } = useAuth(); // Obtiene funciones y estados de autenticación del contexto
+  const navigate = useNavigate(); // Obtiene la función de navegación
+  const [showErrors, setShowErrors] = useState(true); // Estado para mostrar errores
 
+  // Redirige al perfil si ya está autenticado
   useEffect(() => {
     if (isAutheticated) navigate("/profile");
   }, [isAutheticated]);
 
+  // Oculta los errores después de un tiempo determinado
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowErrors(false);
@@ -23,8 +23,9 @@ function LoginPage() {
     return () => clearTimeout(timer); // Limpiar el temporizador al desmontar el componente
   }, []);
 
+  // Función que maneja el envío del formulario al iniciar sesión
   const onSubmit = handleSubmit((data) => {
-    signin(data);
+    signin(data); // Llama a la función de inicio de sesión del contexto
   });
 
   return (
@@ -74,4 +75,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-

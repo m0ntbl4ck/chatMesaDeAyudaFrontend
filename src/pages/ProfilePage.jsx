@@ -1,18 +1,17 @@
-import { useForm } from 'react-hook-form';
-import { useAuth } from "../context/AuthContext";
-
+import { useForm } from 'react-hook-form'; // Importa el hook useForm para manejar los formularios
+import { useAuth } from "../context/AuthContext"; // Importa el contexto de autenticación
 
 function ProfilePage() {
-  const { user,logout } = useAuth();
-  const{handleSubmit}= useForm()
-
+  const { user, logout } = useAuth(); // Obtiene el usuario y la función de cierre de sesión del contexto
+  const { handleSubmit } = useForm(); // Utiliza el hook useForm para manejar el envío del formulario
 
   // Datos de ejemplo para contactos y mensajes
   const contacts = ["Contacto 1", "Contacto 2", "Contacto 3"];
   const messages = ["Mensaje 1", "Mensaje 2", "Mensaje 3"];
 
+  // Función que maneja el envío del formulario al hacer logout
   const onSubmit = handleSubmit(() => {
-    logout();
+    logout(); // Llama a la función de cierre de sesión del contexto
   });
 
   return (
