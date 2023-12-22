@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: white; /* Cambia el fondo del cuerpo a blanco */
+  color: black; /* Cambia el color del texto a negro */
+}
+
+/* Estilos adicionales para el formulario */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+  outline: none;
+  border: none;
+}
+
+input::placeholder {
+  color: #a0aec0; /* Color del placeholder */
+}
